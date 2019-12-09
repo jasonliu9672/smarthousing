@@ -1,0 +1,1745 @@
+{
+  "contractName": "RentalAgreement",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "subtractedValue",
+          "type": "uint256"
+        }
+      ],
+      "name": "decreaseAllowance",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "addedValue",
+          "type": "uint256"
+        }
+      ],
+      "name": "increaseAllowance",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "landlord",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "paidrents",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "paid_timestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "status",
+      "outputs": [
+        {
+          "internalType": "enum RentalAgreement.State",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "tenant",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"subtractedValue\",\"type\":\"uint256\"}],\"name\":\"decreaseAllowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"addedValue\",\"type\":\"uint256\"}],\"name\":\"increaseAllowance\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"landlord\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"paidrents\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"paid_timestamp\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"status\",\"outputs\":[{\"internalType\":\"enum RentalAgreement.State\",\"name\":\"\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"tenant\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Jason Liu\",\"details\":\"erer\",\"methods\":{\"allowance(address,address)\":{\"details\":\"See {IERC20-allowance}.\"},\"approve(address,uint256)\":{\"details\":\"See {IERC20-approve}.     * Requirements:     * - `spender` cannot be the zero address.\"},\"balanceOf(address)\":{\"details\":\"See {IERC20-balanceOf}.\"},\"decimals()\":{\"details\":\"Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5,05` (`505 / 10 ** 2`).     * Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei.     * NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}.\"},\"decreaseAllowance(address,uint256)\":{\"details\":\"Atomically decreases the allowance granted to `spender` by the caller.     * This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}.     * Emits an {Approval} event indicating the updated allowance.     * Requirements:     * - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`.\"},\"increaseAllowance(address,uint256)\":{\"details\":\"Atomically increases the allowance granted to `spender` by the caller.     * This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}.     * Emits an {Approval} event indicating the updated allowance.     * Requirements:     * - `spender` cannot be the zero address.\"},\"name()\":{\"details\":\"Returns the name of the token.\"},\"symbol()\":{\"details\":\"Returns the symbol of the token, usually a shorter version of the name.\"},\"totalSupply()\":{\"details\":\"See {IERC20-totalSupply}.\"},\"transfer(address,uint256)\":{\"details\":\"See {IERC20-transfer}.     * Requirements:     * - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`.\"},\"transferFrom(address,address,uint256)\":{\"details\":\"See {IERC20-transferFrom}.     * Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20};     * Requirements: - `sender` and `recipient` cannot be the zero address. - `sender` must have a balance of at least `amount`. - the caller must have allowance for `sender`'s tokens of at least `amount`.\"}},\"title\":\"A house leasing contract\"},\"userdoc\":{\"methods\":{},\"notice\":\"erer\"}},\"settings\":{\"compilationTarget\":{\"/Users/liuyuantai/Desktop/Blockchain/smarthousing/contracts/RentalAgreement.sol\":\"RentalAgreement\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/liuyuantai/Desktop/Blockchain/smarthousing/contracts/RentalAgreement.sol\":{\"keccak256\":\"0xe926c03f1ca50c267bef51e0c381291e5c65bfb3cbbafb37407b8ad4991aec0c\",\"urls\":[\"bzz-raw://3e734664f7810cb455230b6bb2fef1cde3d0fa329bc4feea345196bbf9ea7ab2\",\"dweb:/ipfs/QmdMW2G7AE7eZQE9LNNuP19k7ztzQpDyfkHo35xEgmVhjh\"]},\"/Users/liuyuantai/Desktop/Blockchain/smarthousing/node_modules/@openzeppelin/contracts/GSN/Context.sol\":{\"keccak256\":\"0x90a3995645af7562d84b9d69363ffa5ae7217714ab61e951bf7bc450f40e4061\",\"urls\":[\"bzz-raw://216ef9d6b614db4eb46970b4e84903f2534a45572dd30a79f0041f1a5830f436\",\"dweb:/ipfs/QmNPrJ4MWKUAWzKXpUqeyKRUfosaoANZAqXgvepdrCwZAG\"]},\"/Users/liuyuantai/Desktop/Blockchain/smarthousing/node_modules/@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]},\"/Users/liuyuantai/Desktop/Blockchain/smarthousing/node_modules/@openzeppelin/contracts/ownership/Ownable.sol\":{\"keccak256\":\"0xecd8ab29d9a5771c3964d0cd1788c4a5098a0081b20fb275da850a22b1c59806\",\"urls\":[\"bzz-raw://696a75bc2c55407ce8251ccc7d19ecb1b7b2be1796a160a6524312babcc7e3d4\",\"dweb:/ipfs/QmQViKEp3y99h9uhRssE29TmjBKRnFMaoz3eJZ4eggggg2\"]},\"/Users/liuyuantai/Desktop/Blockchain/smarthousing/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0x65a4078c03875c25413a068ce9cfdd7e68a90f8786612d1189c89341e6e3b802\",\"urls\":[\"bzz-raw://45c0d95495b944fbb1aa09d900b0ab530903a432125ab8fddfa05064a7988991\",\"dweb:/ipfs/Qma2VeknkKA1THeubGzshWFk44BktXkXP1UKp9Un2uDSsu\"]},\"/Users/liuyuantai/Desktop/Blockchain/smarthousing/node_modules/@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol\":{\"keccak256\":\"0x4a3a810b7ebe742e897e1fd428b3eeed2196d3acea58eaf9c566ed10d545d2ed\",\"urls\":[\"bzz-raw://28d03f328e19e4099d5013de0649afaeaabac1a614e130767ab1cb4aca9775b6\",\"dweb:/ipfs/Qmb9iW7yNuYehB2NfhRMs9TakqbLVQhBhmGMkaDZ5g1Eb4\"]},\"/Users/liuyuantai/Desktop/Blockchain/smarthousing/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91\",\"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\nimport \"../node_modules/@openzeppelin/contracts/ownership/Ownable.sol\";\nimport \"../node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol\";\nimport \"../node_modules/@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol\";\n\n/// @title A house leasing contract\n/// @author Jason Liu\n/// @notice erer\n/// @dev erer\ncontract RentalAgreement is ERC20, ERC20Detailed{\n    struct HouseInfo{\n        string physical_address;\n        string city;\n        uint zip_code;\n        ///house_type indicate studio, two bedrooms, etc\n        string house_type;\n    }\n    struct Deposit{\n        uint amout;\n        bool refunded;\n        uint input_timestamp;\n    }\n    struct PaidRent{\n        uint id;\n        uint paid_timestamp;\n        uint amount;\n    }\n    struct Termination{\n        uint moveout_timestamp;\n        string reason;\n    }\n    ///array that records rent payment\n    PaidRent[] public paidrents;\n    ///define contract state\n    enum State {Created, Pending, Started, Terminated}\n    State public status = State.Created;\n    address public landlord;\n    address public tenant;\n\n}",
+  "sourcePath": "/Users/liuyuantai/Desktop/Blockchain/smarthousing/contracts/RentalAgreement.sol",
+  "ast": {
+    "absolutePath": "/Users/liuyuantai/Desktop/Blockchain/smarthousing/contracts/RentalAgreement.sol",
+    "exportedSymbols": {
+      "RentalAgreement": [
+        137
+      ]
+    },
+    "id": 138,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 85,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:2"
+      },
+      {
+        "absolutePath": "/Users/liuyuantai/Desktop/Blockchain/smarthousing/node_modules/@openzeppelin/contracts/ownership/Ownable.sol",
+        "file": "../node_modules/@openzeppelin/contracts/ownership/Ownable.sol",
+        "id": 86,
+        "nodeType": "ImportDirective",
+        "scope": 138,
+        "sourceUnit": 765,
+        "src": "24:71:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/liuyuantai/Desktop/Blockchain/smarthousing/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "file": "../node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "id": 87,
+        "nodeType": "ImportDirective",
+        "scope": 138,
+        "sourceUnit": 1170,
+        "src": "96:71:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/liuyuantai/Desktop/Blockchain/smarthousing/node_modules/@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol",
+        "file": "../node_modules/@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol",
+        "id": 88,
+        "nodeType": "ImportDirective",
+        "scope": 138,
+        "sourceUnit": 1228,
+        "src": "168:79:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 89,
+              "name": "ERC20",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1169,
+              "src": "366:5:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ERC20_$1169",
+                "typeString": "contract ERC20"
+              }
+            },
+            "id": 90,
+            "nodeType": "InheritanceSpecifier",
+            "src": "366:5:2"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 91,
+              "name": "ERC20Detailed",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1227,
+              "src": "373:13:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ERC20Detailed_$1227",
+                "typeString": "contract ERC20Detailed"
+              }
+            },
+            "id": 92,
+            "nodeType": "InheritanceSpecifier",
+            "src": "373:13:2"
+          }
+        ],
+        "contractDependencies": [
+          463,
+          1169,
+          1227,
+          1296
+        ],
+        "contractKind": "contract",
+        "documentation": "@title A house leasing contract\n @author Jason Liu\n @notice erer\n @dev erer",
+        "fullyImplemented": false,
+        "id": 137,
+        "linearizedBaseContracts": [
+          137,
+          1227,
+          1169,
+          1296,
+          463
+        ],
+        "name": "RentalAgreement",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "RentalAgreement.HouseInfo",
+            "id": 101,
+            "members": [
+              {
+                "constant": false,
+                "id": 94,
+                "name": "physical_address",
+                "nodeType": "VariableDeclaration",
+                "scope": 101,
+                "src": "418:23:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 93,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "418:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 96,
+                "name": "city",
+                "nodeType": "VariableDeclaration",
+                "scope": 101,
+                "src": "451:11:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 95,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "451:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 98,
+                "name": "zip_code",
+                "nodeType": "VariableDeclaration",
+                "scope": 101,
+                "src": "472:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 97,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "472:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 100,
+                "name": "house_type",
+                "nodeType": "VariableDeclaration",
+                "scope": 101,
+                "src": "552:17:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 99,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "552:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "HouseInfo",
+            "nodeType": "StructDefinition",
+            "scope": 137,
+            "src": "392:184:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "RentalAgreement.Deposit",
+            "id": 108,
+            "members": [
+              {
+                "constant": false,
+                "id": 103,
+                "name": "amout",
+                "nodeType": "VariableDeclaration",
+                "scope": 108,
+                "src": "605:10:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 102,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "605:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 105,
+                "name": "refunded",
+                "nodeType": "VariableDeclaration",
+                "scope": 108,
+                "src": "625:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 104,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "625:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 107,
+                "name": "input_timestamp",
+                "nodeType": "VariableDeclaration",
+                "scope": 108,
+                "src": "648:20:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 106,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "648:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Deposit",
+            "nodeType": "StructDefinition",
+            "scope": 137,
+            "src": "581:94:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "RentalAgreement.PaidRent",
+            "id": 115,
+            "members": [
+              {
+                "constant": false,
+                "id": 110,
+                "name": "id",
+                "nodeType": "VariableDeclaration",
+                "scope": 115,
+                "src": "705:7:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 109,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "705:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 112,
+                "name": "paid_timestamp",
+                "nodeType": "VariableDeclaration",
+                "scope": 115,
+                "src": "722:19:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 111,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "722:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 114,
+                "name": "amount",
+                "nodeType": "VariableDeclaration",
+                "scope": 115,
+                "src": "751:11:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 113,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "751:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "PaidRent",
+            "nodeType": "StructDefinition",
+            "scope": 137,
+            "src": "680:89:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "RentalAgreement.Termination",
+            "id": 120,
+            "members": [
+              {
+                "constant": false,
+                "id": 117,
+                "name": "moveout_timestamp",
+                "nodeType": "VariableDeclaration",
+                "scope": 120,
+                "src": "802:22:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 116,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "802:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 119,
+                "name": "reason",
+                "nodeType": "VariableDeclaration",
+                "scope": 120,
+                "src": "834:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 118,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "834:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Termination",
+            "nodeType": "StructDefinition",
+            "scope": 137,
+            "src": "774:80:2",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 123,
+            "name": "paidrents",
+            "nodeType": "VariableDeclaration",
+            "scope": 137,
+            "src": "898:27:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_PaidRent_$115_storage_$dyn_storage",
+              "typeString": "struct RentalAgreement.PaidRent[]"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 121,
+                "name": "PaidRent",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 115,
+                "src": "898:8:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_PaidRent_$115_storage_ptr",
+                  "typeString": "struct RentalAgreement.PaidRent"
+                }
+              },
+              "id": 122,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "898:10:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_PaidRent_$115_storage_$dyn_storage_ptr",
+                "typeString": "struct RentalAgreement.PaidRent[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "RentalAgreement.State",
+            "id": 128,
+            "members": [
+              {
+                "id": 124,
+                "name": "Created",
+                "nodeType": "EnumValue",
+                "src": "972:7:2"
+              },
+              {
+                "id": 125,
+                "name": "Pending",
+                "nodeType": "EnumValue",
+                "src": "981:7:2"
+              },
+              {
+                "id": 126,
+                "name": "Started",
+                "nodeType": "EnumValue",
+                "src": "990:7:2"
+              },
+              {
+                "id": 127,
+                "name": "Terminated",
+                "nodeType": "EnumValue",
+                "src": "999:10:2"
+              }
+            ],
+            "name": "State",
+            "nodeType": "EnumDefinition",
+            "src": "960:50:2"
+          },
+          {
+            "constant": false,
+            "id": 132,
+            "name": "status",
+            "nodeType": "VariableDeclaration",
+            "scope": 137,
+            "src": "1015:35:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_enum$_State_$128",
+              "typeString": "enum RentalAgreement.State"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 129,
+              "name": "State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 128,
+              "src": "1015:5:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_enum$_State_$128",
+                "typeString": "enum RentalAgreement.State"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "expression": {
+                "argumentTypes": null,
+                "id": 130,
+                "name": "State",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 128,
+                "src": "1037:5:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_type$_t_enum$_State_$128_$",
+                  "typeString": "type(enum RentalAgreement.State)"
+                }
+              },
+              "id": 131,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "lValueRequested": false,
+              "memberName": "Created",
+              "nodeType": "MemberAccess",
+              "referencedDeclaration": null,
+              "src": "1037:13:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_enum$_State_$128",
+                "typeString": "enum RentalAgreement.State"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 134,
+            "name": "landlord",
+            "nodeType": "VariableDeclaration",
+            "scope": 137,
+            "src": "1056:23:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 133,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "1056:7:2",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 136,
+            "name": "tenant",
+            "nodeType": "VariableDeclaration",
+            "scope": 137,
+            "src": "1085:21:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 135,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "1085:7:2",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 138,
+        "src": "338:772:2"
+      }
+    ],
+    "src": "0:1110:2"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/liuyuantai/Desktop/Blockchain/smarthousing/contracts/RentalAgreement.sol",
+    "exportedSymbols": {
+      "RentalAgreement": [
+        137
+      ]
+    },
+    "id": 138,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 85,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:2"
+      },
+      {
+        "absolutePath": "/Users/liuyuantai/Desktop/Blockchain/smarthousing/node_modules/@openzeppelin/contracts/ownership/Ownable.sol",
+        "file": "../node_modules/@openzeppelin/contracts/ownership/Ownable.sol",
+        "id": 86,
+        "nodeType": "ImportDirective",
+        "scope": 138,
+        "sourceUnit": 765,
+        "src": "24:71:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/liuyuantai/Desktop/Blockchain/smarthousing/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "file": "../node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "id": 87,
+        "nodeType": "ImportDirective",
+        "scope": 138,
+        "sourceUnit": 1170,
+        "src": "96:71:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/liuyuantai/Desktop/Blockchain/smarthousing/node_modules/@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol",
+        "file": "../node_modules/@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol",
+        "id": 88,
+        "nodeType": "ImportDirective",
+        "scope": 138,
+        "sourceUnit": 1228,
+        "src": "168:79:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 89,
+              "name": "ERC20",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1169,
+              "src": "366:5:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ERC20_$1169",
+                "typeString": "contract ERC20"
+              }
+            },
+            "id": 90,
+            "nodeType": "InheritanceSpecifier",
+            "src": "366:5:2"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 91,
+              "name": "ERC20Detailed",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1227,
+              "src": "373:13:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ERC20Detailed_$1227",
+                "typeString": "contract ERC20Detailed"
+              }
+            },
+            "id": 92,
+            "nodeType": "InheritanceSpecifier",
+            "src": "373:13:2"
+          }
+        ],
+        "contractDependencies": [
+          463,
+          1169,
+          1227,
+          1296
+        ],
+        "contractKind": "contract",
+        "documentation": "@title A house leasing contract\n @author Jason Liu\n @notice erer\n @dev erer",
+        "fullyImplemented": false,
+        "id": 137,
+        "linearizedBaseContracts": [
+          137,
+          1227,
+          1169,
+          1296,
+          463
+        ],
+        "name": "RentalAgreement",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "RentalAgreement.HouseInfo",
+            "id": 101,
+            "members": [
+              {
+                "constant": false,
+                "id": 94,
+                "name": "physical_address",
+                "nodeType": "VariableDeclaration",
+                "scope": 101,
+                "src": "418:23:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 93,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "418:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 96,
+                "name": "city",
+                "nodeType": "VariableDeclaration",
+                "scope": 101,
+                "src": "451:11:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 95,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "451:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 98,
+                "name": "zip_code",
+                "nodeType": "VariableDeclaration",
+                "scope": 101,
+                "src": "472:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 97,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "472:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 100,
+                "name": "house_type",
+                "nodeType": "VariableDeclaration",
+                "scope": 101,
+                "src": "552:17:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 99,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "552:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "HouseInfo",
+            "nodeType": "StructDefinition",
+            "scope": 137,
+            "src": "392:184:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "RentalAgreement.Deposit",
+            "id": 108,
+            "members": [
+              {
+                "constant": false,
+                "id": 103,
+                "name": "amout",
+                "nodeType": "VariableDeclaration",
+                "scope": 108,
+                "src": "605:10:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 102,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "605:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 105,
+                "name": "refunded",
+                "nodeType": "VariableDeclaration",
+                "scope": 108,
+                "src": "625:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 104,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "625:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 107,
+                "name": "input_timestamp",
+                "nodeType": "VariableDeclaration",
+                "scope": 108,
+                "src": "648:20:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 106,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "648:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Deposit",
+            "nodeType": "StructDefinition",
+            "scope": 137,
+            "src": "581:94:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "RentalAgreement.PaidRent",
+            "id": 115,
+            "members": [
+              {
+                "constant": false,
+                "id": 110,
+                "name": "id",
+                "nodeType": "VariableDeclaration",
+                "scope": 115,
+                "src": "705:7:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 109,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "705:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 112,
+                "name": "paid_timestamp",
+                "nodeType": "VariableDeclaration",
+                "scope": 115,
+                "src": "722:19:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 111,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "722:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 114,
+                "name": "amount",
+                "nodeType": "VariableDeclaration",
+                "scope": 115,
+                "src": "751:11:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 113,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "751:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "PaidRent",
+            "nodeType": "StructDefinition",
+            "scope": 137,
+            "src": "680:89:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "RentalAgreement.Termination",
+            "id": 120,
+            "members": [
+              {
+                "constant": false,
+                "id": 117,
+                "name": "moveout_timestamp",
+                "nodeType": "VariableDeclaration",
+                "scope": 120,
+                "src": "802:22:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 116,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "802:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 119,
+                "name": "reason",
+                "nodeType": "VariableDeclaration",
+                "scope": 120,
+                "src": "834:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 118,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "834:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Termination",
+            "nodeType": "StructDefinition",
+            "scope": 137,
+            "src": "774:80:2",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 123,
+            "name": "paidrents",
+            "nodeType": "VariableDeclaration",
+            "scope": 137,
+            "src": "898:27:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_PaidRent_$115_storage_$dyn_storage",
+              "typeString": "struct RentalAgreement.PaidRent[]"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 121,
+                "name": "PaidRent",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 115,
+                "src": "898:8:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_PaidRent_$115_storage_ptr",
+                  "typeString": "struct RentalAgreement.PaidRent"
+                }
+              },
+              "id": 122,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "898:10:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_PaidRent_$115_storage_$dyn_storage_ptr",
+                "typeString": "struct RentalAgreement.PaidRent[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "RentalAgreement.State",
+            "id": 128,
+            "members": [
+              {
+                "id": 124,
+                "name": "Created",
+                "nodeType": "EnumValue",
+                "src": "972:7:2"
+              },
+              {
+                "id": 125,
+                "name": "Pending",
+                "nodeType": "EnumValue",
+                "src": "981:7:2"
+              },
+              {
+                "id": 126,
+                "name": "Started",
+                "nodeType": "EnumValue",
+                "src": "990:7:2"
+              },
+              {
+                "id": 127,
+                "name": "Terminated",
+                "nodeType": "EnumValue",
+                "src": "999:10:2"
+              }
+            ],
+            "name": "State",
+            "nodeType": "EnumDefinition",
+            "src": "960:50:2"
+          },
+          {
+            "constant": false,
+            "id": 132,
+            "name": "status",
+            "nodeType": "VariableDeclaration",
+            "scope": 137,
+            "src": "1015:35:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_enum$_State_$128",
+              "typeString": "enum RentalAgreement.State"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 129,
+              "name": "State",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 128,
+              "src": "1015:5:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_enum$_State_$128",
+                "typeString": "enum RentalAgreement.State"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "expression": {
+                "argumentTypes": null,
+                "id": 130,
+                "name": "State",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 128,
+                "src": "1037:5:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_type$_t_enum$_State_$128_$",
+                  "typeString": "type(enum RentalAgreement.State)"
+                }
+              },
+              "id": 131,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "lValueRequested": false,
+              "memberName": "Created",
+              "nodeType": "MemberAccess",
+              "referencedDeclaration": null,
+              "src": "1037:13:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_enum$_State_$128",
+                "typeString": "enum RentalAgreement.State"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 134,
+            "name": "landlord",
+            "nodeType": "VariableDeclaration",
+            "scope": 137,
+            "src": "1056:23:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 133,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "1056:7:2",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 136,
+            "name": "tenant",
+            "nodeType": "VariableDeclaration",
+            "scope": 137,
+            "src": "1085:21:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 135,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "1085:7:2",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 138,
+        "src": "338:772:2"
+      }
+    ],
+    "src": "0:1110:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.12+commit.7709ece9.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.19",
+  "updatedAt": "2019-11-25T07:52:25.669Z",
+  "devdoc": {
+    "author": "Jason Liu",
+    "details": "erer",
+    "methods": {
+      "allowance(address,address)": {
+        "details": "See {IERC20-allowance}."
+      },
+      "approve(address,uint256)": {
+        "details": "See {IERC20-approve}.     * Requirements:     * - `spender` cannot be the zero address."
+      },
+      "balanceOf(address)": {
+        "details": "See {IERC20-balanceOf}."
+      },
+      "decimals()": {
+        "details": "Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5,05` (`505 / 10 ** 2`).     * Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei.     * NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}."
+      },
+      "decreaseAllowance(address,uint256)": {
+        "details": "Atomically decreases the allowance granted to `spender` by the caller.     * This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}.     * Emits an {Approval} event indicating the updated allowance.     * Requirements:     * - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`."
+      },
+      "increaseAllowance(address,uint256)": {
+        "details": "Atomically increases the allowance granted to `spender` by the caller.     * This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}.     * Emits an {Approval} event indicating the updated allowance.     * Requirements:     * - `spender` cannot be the zero address."
+      },
+      "name()": {
+        "details": "Returns the name of the token."
+      },
+      "symbol()": {
+        "details": "Returns the symbol of the token, usually a shorter version of the name."
+      },
+      "totalSupply()": {
+        "details": "See {IERC20-totalSupply}."
+      },
+      "transfer(address,uint256)": {
+        "details": "See {IERC20-transfer}.     * Requirements:     * - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`."
+      },
+      "transferFrom(address,address,uint256)": {
+        "details": "See {IERC20-transferFrom}.     * Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20};     * Requirements: - `sender` and `recipient` cannot be the zero address. - `sender` must have a balance of at least `amount`. - the caller must have allowance for `sender`'s tokens of at least `amount`."
+      }
+    },
+    "title": "A house leasing contract"
+  },
+  "userdoc": {
+    "methods": {},
+    "notice": "erer"
+  }
+}
