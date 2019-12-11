@@ -7,18 +7,24 @@ import "./DateTime.sol";
 
 /**
 * @title A house leasing contract
-* @author Jason Liu
-* @notice 
-* @dev 
 */
 
-contract HouseContract is Ownable,DateTime{
+contract SmartHousing is Ownable,DateTime{
     using Roles for Roles.Role;
     //prevent overflow c = a + b becomes c = a.add(b)
     using SafeMath for uint256;
     Roles.Role private tenants;
-    address private landlord;
-
+    address private landlord_address;
+    struct Landlord{
+        string name;
+        string hashed_pid;
+        address _address;
+    }
+    struct Tenant{
+        string name;
+        string hashed_pid;
+        address _address;
+    }
     struct HouseInfo{
         string physical_address;
         string city;
@@ -30,37 +36,32 @@ contract HouseContract is Ownable,DateTime{
         uint256 timestamp;
         string reason;
     }
-    struct RequestInfo{
-        string name;
-        string email;
-        uint256 phone_number;
-    }
     // defines contract state
-    enum State {Created, Pending, Started, Terminated}
+    enum State {Pending, Started, Terminated}
     // main lease contract
     struct LeaseContract{
         uint256 id;
-        address tenant;
+        Landlord landlord;
+        Tenant tenant;
         HouseInfo house_info; //basic information about this leasing object
 
         //Contract Metadata
         uint256 rent; // rent per month
+        uint256 utility_bill; ///
         uint8 rent_pay_day; // the day that needs to pay rent, for example 5 means you need to pay rent on 9/5 for September
         uint256 total_term; //total number of term for this contract, unit for term is month
         uint256 deposit; //deposit in unit of month, ex: two months deposit
         State state;
         uint256 start_timestamp; // when the contract actually starts
         uint256 paid_rent_count; //array that records rent payments
-
-        //Pending
-        address[] pending_list; //list of address for all request accounts
-        mapping(address => RequestInfo) pending_list_info; //personal info for each request
+        string repair_obligation;///
 
         //Termination
         Termination termination; //provide terminate time and reason
     }
     //list of all contracts
     LeaseContract[] contracts;
+    Landlord landlord;
     // highest valid tokenID or contractID
     uint256 internal maxID;
     // number of contracts
@@ -70,15 +71,17 @@ contract HouseContract is Ownable,DateTime{
     //A mapping of approved address for each contract
     mapping(uint256 => address) internal allowance;
 
-    //A nested mapping for managing "operator"
-    mapping(address => mapping(address => bool)) internal authorised;
-
     //Events
     event ContractCreated(string physical_address, string city, uint256 zip_code, string house_type, uint256 id);
     event NewLeaseRequest(string name, string email, uint256 phone_number, uint256 contract_id);
     event ContractStarted(uint256 contract_id, address select_address);
-    constructor() public{
-        landlord = msg.sender;
+    // constructor() public{
+    //     landlord._address = msg.sender;
+    // }
+    constructor(string memory _landlord_name, string memory _landlord_hashed_pid) public{
+        landlord._address = msg.sender;
+        landlord.name = _landlord_name;
+        landlord.hashed_pid = _landlord_hashed_pid;
     }
     /**
      * @dev check if one month payment is not less than require rent
@@ -91,25 +94,56 @@ contract HouseContract is Ownable,DateTime{
      */
     function isValidContract(uint256 _contractId) internal view returns(bool){
         //return _contractId != 0 && _contractId <= maxID && !burned[_contractId];
-        return _contractId >= 0 && _contractId <= maxID;
+        return _contractId >= 0 && _contractId <= maxID && !burned[_contractId];
+    }
+     /**
+     * @dev check if this signer is allowed to sign this contract
+     */
+    function isPermittedSigner(uint256 _contractId, address _signer) internal view returns(bool){
+        return contracts[_contractId].tenant._address == _signer;
     }
     /**
-     * @dev create a new contract with leasing details for people to view
+     * @dev during the appointment with tenant, landlodrd creates a new contract and wait for tenant to sign
      */
-    function addNewContract(string memory _physical_address, string memory _city, uint256 _zip_code, string memory _house_type,
-                            uint256 _rent, uint256 _total_term, uint8 _rent_pay_day) public onlyOwner returns(uint256){
+    function addNewContract(address _tenant_address,
+                            string memory _physical_address,string memory _city, uint256 _zip_code, string memory _house_type,
+                            uint256 _rent, uint256 _utility_bill, uint256 _total_term, uint8 _rent_pay_day, uint256 _deposit,
+                            string memory _repair_obligation) public onlyOwner returns(uint256){
         LeaseContract memory newcontract;
+        newcontract.landlord = landlord;
         newcontract.house_info = HouseInfo({physical_address:_physical_address, city:_city, zip_code:_zip_code, house_type:_house_type });
         newcontract.id = maxID;
+        allowance[newcontract.id] = _tenant_address; //only allow this address to sign the contract
         maxID.add(1);
         newcontract.rent = _rent;
+        newcontract.utility_bill = _utility_bill;
         newcontract.total_term = _total_term;
         newcontract.rent_pay_day = _rent_pay_day;
-        newcontract.state = State.Created;
+        newcontract.deposit = _deposit;
+        newcontract.repair_obligation = _repair_obligation;
+        newcontract.state = State.Pending;
         contracts.push(newcontract);
         emit ContractCreated(_physical_address,_city,_zip_code,_house_type,newcontract.id);
         return newcontract.id;
     }
+    /**
+     * @dev sign the contract and the lease start
+     */
+    function signContract(string memory _name, string memory _hashed_pid, uint256 _contract_id) public{
+        require(isValidContract(_contract_id),'Invalid Contract ID');
+        require(isPermittedSigner(_contract_id, msg.sender),'Not Permitted To Sign');
+        require(contracts[_contract_id].state == State.Pending,'Not At Pending State');
+        Tenant memory new_tenant = Tenant(_name,_hashed_pid,msg.sender);
+        tenants.add(msg.sender);
+        contracts[_contract_id].tenant = new_tenant;
+        contracts[_contract_id].state = State.Started;
+    }
+     /**
+     * @dev remove a tenant and delete his allowance to a contract
+     */
+     function removeTenant(address _tenant)  public onlyOwner{
+         tenants.remove(_tenant);
+     }
     /**
      * @dev return house info, rent, and term for specific contract
      */
@@ -121,57 +155,16 @@ contract HouseContract is Ownable,DateTime{
                 contracts[_contract_id].total_term);
     }
     /**
-     * @dev add a new tenant and map him to a corresponding contract
-     */
-    function addNewTenant(address _newtenant, uint256 _contract_id) internal onlyOwner{
-        require(isValidContract(_contract_id),'Invalid Contract ID');
-        require(_newtenant != landlord,'Cannot Add Yourself');
-        tenants.add(_newtenant);
-        allowance[_contract_id] = _newtenant;
-    }
-     /**
-     * @dev remove a tenant and delete his allowance to a contract
-     */
-     function removeTenant(address _tenant)  public onlyOwner{
-         tenants.remove(_tenant);
-     }
-    /**
-     * @dev request from tenant who wants to rent a house and desire to start the leasing process
-     */
-    function requestLease(string memory _name, string memory _email, uint256 _phone_number, uint256 _contract_id /**uint256 nonce,
-                         bytes memory signature*/) public {
-        //amount is in amountGet terms
-        //bytes32 hash = keccak256(abi.encodePacked(this, _name, _email, _phone_number, _contract_id, nonce));
-        require(isValidContract(_contract_id),'Invalid Contract ID');
-        //require(ecrecover(keccak256("\x19Ethereum Signed Message:\n32", hash),v,r,s) == user, 'invalid signature');
-        RequestInfo memory new_request = RequestInfo(_name,_email,_phone_number);
-        contracts[_contract_id].pending_list.push(msg.sender);
-        contracts[_contract_id].pending_list_info[msg.sender] = new_request;
-        contracts[_contract_id].state = State.Pending;
-        //now wait for the landlord to verify request, contact with tenant and authorize access to the contract
-    }
-    /**
      * @dev obtain list of pending id for a pending contract
      */
      function getContractStatus(uint256 _contract_id) public view returns(State){
          return contracts[_contract_id].state;
      }
-    /**
-     * @dev obtain list of pending id for a pending contract
+      /**
+     * @dev obtain the tenant for that contract
      */
-    function getContractPendingList(uint256 _contract_id) public view onlyOwner returns(address[] memory){
-        return contracts[_contract_id].pending_list;
-    }
-     /**
-     * @dev select one pending request to start the contract
-     */
-     function selectPendingRequest(uint256 _contract_id, address _select_address) public onlyOwner{
-        require(contracts[_contract_id].state == State.Pending, "Contract Does Not Have Pending Requests");
-        contracts[_contract_id].tenant = _select_address;
-        contracts[_contract_id].state = State.Started;
-        contracts[_contract_id].start_timestamp = now;
-        addNewTenant(_select_address,_contract_id);
-
+     function getContractTenant(uint256 _contract_id) public view returns(string memory, string memory, address){
+         return (contracts[_contract_id].tenant.name,contracts[_contract_id].tenant.hashed_pid,contracts[_contract_id].tenant._address);
      }
      /**
      * @dev return current term of the given contract
@@ -200,15 +193,28 @@ contract HouseContract is Ownable,DateTime{
         }
      }
      /**
-     * @dev check the rent payment status and terminate if neccessary
+     * @dev terminate contract
      */
-     function checkRentPaymentStatus(uint256 _contract_id) public view onlyOwner returns(uint256){
+     function terminateContract(uint256 _contract_id) internal{
+        LeaseContract memory target_contract = contracts[_contract_id];
+        target_contract.state = State.Terminated;
+        this.removeTenant(target_contract.tenant._address);
+        burned[target_contract.id] = true;
+     }
+     /**
+     * @dev check the rent payment status and terminate if neccessary, return unpaid rent count
+     */
+     function updateContractStatus(uint256 _contract_id) public onlyOwner returns(uint256){
         require(isValidContract(_contract_id),'Invalid Contract ID');
         LeaseContract memory target_contract = contracts[_contract_id];
         uint16 current_term = this.getCurrentTerm(_contract_id);
         //if this tenant owe rent in an amount that exceed his deposit, the contract is terminated
         if(current_term - target_contract.paid_rent_count > target_contract.deposit.add(2)){
-            target_contract.state = State.Terminated;
+            terminateContract(_contract_id);
+        }
+        //lease end
+        else if(current_term > target_contract.total_term){
+            terminateContract(_contract_id);
         }
         else{
             return(current_term-target_contract.paid_rent_count);

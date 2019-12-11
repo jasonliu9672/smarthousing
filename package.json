@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^2.4.0",
+    "bcrypt": "^3.0.7",
     "core-js": "^3.3.2",
     "truffle": "^5.1.0",
     "vue": "^2.6.10"
