@@ -1,21 +1,34 @@
+import FormGroupInput from "./Inputs/formGroupInput.vue";
+
 import DropDown from "./Dropdown.vue";
-import Parallax from "./Parallax.vue";
-import Pagination from "./Pagination.vue";
-import Slider from "./Slider.vue";
-import Badge from "./Badge.vue";
-import NavTabsCard from "./cards/NavTabsCard.vue";
-import LoginCard from "./cards/LoginCard.vue";
-import Tabs from "./Tabs.vue";
-import Modal from "./Modal.vue";
+import PaperTable from "./PaperTable.vue";
+import Button from "./Button";
+
+import Card from "./Cards/Card.vue";
+import ChartCard from "./Cards/ChartCard.vue";
+import StatsCard from "./Cards/StatsCard.vue";
+
+import SidebarPlugin from "./SidebarPlugin/index";
+
+let components = {
+  FormGroupInput,
+  Card,
+  ChartCard,
+  StatsCard,
+  PaperTable,
+  DropDown,
+  SidebarPlugin
+};
+
+export default components;
 
 export {
+  FormGroupInput,
+  Card,
+  ChartCard,
+  StatsCard,
+  PaperTable,
   DropDown,
-  Parallax,
-  Pagination,
-  Slider,
-  Badge,
-  NavTabsCard,
-  LoginCard,
-  Tabs,
-  Modal
+  Button,
+  SidebarPlugin
 };
