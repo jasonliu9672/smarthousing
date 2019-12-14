@@ -34,10 +34,11 @@ contract SmartHousing is Ownable,DateTime{
     }
     struct Termination{
         uint256 timestamp;
-        string reason;
+        string landlord_comment;
+        string tenant_comment;
     }
     // defines contract state
-    enum State {Pending, Started, Terminated}
+    enum State {Pending, Started, Terminated, Commented}
     // main lease contract
     struct LeaseContract{
         uint256 id;
@@ -68,7 +69,8 @@ contract SmartHousing is Ownable,DateTime{
     uint256 private contractNumber;
     //A mapping of terminated contracts, checks if a contract is valid
     mapping(uint256 => bool) internal burned;
-    //A mapping of approved address for each contract
+    //A mapping of  tenant to corresponding address, allowance will continue to allow access
+    //to the contract until tenant comment on the lease after termination
     mapping(uint256 => address) internal allowance;
 
     //Events
@@ -102,6 +104,12 @@ contract SmartHousing is Ownable,DateTime{
     function isPermittedSigner(uint256 _contractId, address _signer) internal view returns(bool){
         return contracts[_contractId].tenant._address == _signer;
     }
+    /**
+     * @dev check if landlord or tenant is allowed to comment on this burined contract
+     */
+     function isAllowedComment(uint256 _contractId) internal view returns(bool){
+         return burned[_contractId] && contracts[_contractId].state == State.Terminated;
+     }
     /**
      * @dev during the appointment with tenant, landlodrd creates a new contract and wait for tenant to sign
      */
@@ -197,6 +205,8 @@ contract SmartHousing is Ownable,DateTime{
      */
      function terminateContract(uint256 _contract_id) internal{
         LeaseContract memory target_contract = contracts[_contract_id];
+        Termination memory termination = Termination({timestamp:now, landlord_comment:"",tenant_comment:""});
+        target_contract.termination = termination;
         target_contract.state = State.Terminated;
         this.removeTenant(target_contract.tenant._address);
         burned[target_contract.id] = true;
@@ -220,6 +230,33 @@ contract SmartHousing is Ownable,DateTime{
             return(current_term-target_contract.paid_rent_count);
         }
      }
+    /**
+     * @dev Tenant comments on contract
+     */
+    function tennantComment(uint256 _contract_id, string memory comment) public{
+        require(isAllowedComment(_contract_id),"Contract Is Not Allowed To Comment");
+        require(allowance[_contract_id] == msg.sender, "Invalid Account");
+        contracts[_contract_id].termination.tenant_comment = comment;
+        allowance[_contract_id] = address(0);
+    }
+    /**
+     * @dev Landlord can comment after tenant commented
+     */
+    function landlordComment(uint256 _contract_id, string memory comment) public onlyOwner{
+        require(isAllowedComment(_contract_id),"Contract Is Not Allowed To Comment");
+        require(allowance[_contract_id] == address(0), "Tenant For This Contract Hasnt Comment");
+        contracts[_contract_id].termination.landlord_comment = comment;
+        contracts[_contract_id].state = State.Commented;
+    }
+    /**
+     * @dev Obtain comments from this contract
+     */
+     function viewComments(uint256 _contract_id) public view returns(string memory, string memory){
+         require(contracts[_contract_id].state == State.Commented, "Contract Is Not Yet Commented");
+         Termination memory termination = contracts[_contract_id].termination;
+         return (termination.tenant_comment,termination.landlord_comment);
+     }
+
 
 
 }
