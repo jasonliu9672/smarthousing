@@ -24,7 +24,7 @@ const routes = [
       },
       {
         path: "stats",
-        name: "stats",
+        name: "new contract",
         component: UserProfile
       },
       {
@@ -49,7 +49,7 @@ const routes = [
       },
       {
         path: "table-list",
-        name: "table-list",
+        name: "timeline",
         component: TableList
       }
     ]

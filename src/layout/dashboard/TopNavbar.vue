@@ -14,7 +14,7 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
           
-          <drop-down class="nav-item"
+          <!-- <drop-down class="nav-item"
                      title="5 Notifications"
                      title-classes="nav-link"
                      icon="ti-bell">
@@ -23,15 +23,15 @@
             <a class="dropdown-item" href="#">Notification 3</a>
             <a class="dropdown-item" href="#">Notification 4</a>
             <a class="dropdown-item" href="#">Another notification</a>
-          </drop-down>
-          <li class="nav-item">
+          </drop-down> -->
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="ti-settings"></i>
               <p>
                 Settings
               </p>
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div></nav>

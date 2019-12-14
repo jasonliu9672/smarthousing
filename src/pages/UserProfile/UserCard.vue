@@ -6,17 +6,15 @@
     <div>
       <div class="author">
         <img class="avatar border-white" src="@/assets/img/faces/face-2.jpg" alt="...">
-        <h4 class="title">Chet Faker
+        <h4 class="title">Alan Yin
           <br>
           <a href="#">
-            <small>@chetfaker</small>
+            <small>@alanYin</small>
           </a>
         </h4>
       </div>
       <p class="description text-center">
-        "I like the way you work it
-        <br> No diggity
-        <br> I wanna bag it up"
+        Welcome to my profile!!!
       </p>
     </div>
     <hr>
@@ -39,15 +37,15 @@ export default {
       details: [
         {
           title: "12",
-          subTitle: "Files"
+          subTitle: "House"
         },
         {
-          title: "2GB",
-          subTitle: "Used"
+          title: "20",
+          subTitle: "Contract"
         },
         {
-          title: "24,6$",
-          subTitle: "Spent"
+          title: "18",
+          subTitle: "Comment"
         }
       ]
     };
