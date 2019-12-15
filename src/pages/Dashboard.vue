@@ -2,23 +2,28 @@
   <div>
 
     <!--Stats cards-->
-    <div class="row">
-      <div class="col-md-6 col-xl-4" v-for="stats in statsCards" :key="stats.title">
-        <stats-card>
-          <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
-            <i :class="stats.icon"></i>
-          </div>
-          <div class="numbers text-left" slot="content">
-            <p>房客姓名：{{stats.name}}</p>
-            <p>地址：{{stats.address}}</p>
-            <p>租金：{{stats.value}}</p>
-            <p>{{stats.title}}</p>
-          </div>
-          <div class="numbers text-left" slot="footer">
-            <p>房客評論：{{stats.footerText}}</p>
+    <loading :active.sync="isLoading"></loading>
+    <div id="all-contracts" v-if="isDrizzleInitialized">
+      <h4>My Account</h4>
+          <drizzle-account units="Ether" :precision="2" />
+      <div id="contract-row" class="row">
+        <div class="col-md-6 col-xl-4" v-for="stats in statsCards" :key="stats.title">
+          <stats-card>
+            <div class="icon-big text-center" :class="`icon-${stats.type}`" slot="header">
+              <i :class="stats.icon"></i>
+            </div>
+            <div class="numbers text-left" slot="content">
+              <p>房客姓名：{{stats.name}}</p>
+              <p>地址：{{stats.address}}</p>
+              <p>租金：{{stats.value}}</p>
+              <p>{{stats.title}}</p>
+            </div>
+            <div class="numbers text-left" slot="footer">
+              <p>房客評論：{{stats.footerText}}</p>
 
-          </div>
-        </stats-card>
+            </div>
+          </stats-card>
+        </div>
       </div>
     </div>
 
@@ -27,11 +32,20 @@
   </div>
 </template>
 <script>
+import { mapGetters} from 'vuex';
 import { StatsCard } from "@/components/index";
 export default {
   components: {
     StatsCard,
     
+  },
+  computed: {
+    ...mapGetters('drizzle',['isDrizzleInitialized']),
+    isLoading:{
+      get:function(){
+        return !this.isDrizzleInitialized;
+      }
+    }
   },
   /**
    * Chart data used to render stats, charts. Should be replaced with server data

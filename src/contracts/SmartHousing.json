@@ -8811,7 +8811,7 @@
                         "name": "this",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3677,
+                        "referencedDeclaration": 3679,
                         "src": "8651:4:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_SmartHousing_$1717",
@@ -9009,7 +9009,7 @@
                                     "name": "this",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 3677,
+                                    "referencedDeclaration": 3679,
                                     "src": "8934:4:2",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_contract$_SmartHousing_$1717",
@@ -9714,7 +9714,7 @@
                         "name": "this",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3677,
+                        "referencedDeclaration": 3679,
                         "src": "9370:4:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_SmartHousing_$1717",
@@ -10163,7 +10163,7 @@
                         "name": "this",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3677,
+                        "referencedDeclaration": 3679,
                         "src": "9849:4:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_SmartHousing_$1717",
@@ -20329,7 +20329,7 @@
                         "name": "this",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3677,
+                        "referencedDeclaration": 3679,
                         "src": "8651:4:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_SmartHousing_$1717",
@@ -20527,7 +20527,7 @@
                                     "name": "this",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 3677,
+                                    "referencedDeclaration": 3679,
                                     "src": "8934:4:2",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_contract$_SmartHousing_$1717",
@@ -21232,7 +21232,7 @@
                         "name": "this",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3677,
+                        "referencedDeclaration": 3679,
                         "src": "9370:4:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_SmartHousing_$1717",
@@ -21681,7 +21681,7 @@
                         "name": "this",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3677,
+                        "referencedDeclaration": 3679,
                         "src": "9849:4:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_SmartHousing_$1717",
@@ -24042,12 +24042,13 @@
         }
       },
       "links": {},
-      "address": "0x2CAAaBC9581C41d7987178dE761Ce8C4c60F8797",
-      "transactionHash": "0x31d47deaca32313ee41f55c0dd18b531e7623910d1532a7916ec09ad9c2ce650"
+      "address": "0xAE628D97a4faBDfe614aa81fBd88De6c88746c24",
+      "transactionHash": "0xe68350249f51e4fed4e91b46e0afdbda724b60ec113dbfe0f07780e0ba48cb0a"
     }
   },
   "schemaVersion": "3.0.19",
-  "updatedAt": "2019-12-15T05:07:25.293Z",
+  "updatedAt": "2019-12-15T05:30:31.102Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {
       "addNewContract(address,string,string,uint256,string,uint256,uint256,uint256,uint8,uint256,string)": {
