@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@drizzle/vue-plugin": "^0.1.1",
-    "@openzeppelin/contracts": "^2.4.0",
+    "@openzeppelin/contracts": "^4.4.2",
     "bcrypt": "^3.0.7",
     "bootstrap": "^4.4.1",
     "chartist": "0.11.4",
